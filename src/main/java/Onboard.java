@@ -40,7 +40,7 @@ public class Onboard
 
         FileWriter fileWriter = new FileWriter(onboardFile);
 
-        CSVPrinter csvPrinter = new CSVPrinter(fileWriter, CSVFormat.RFC4180);
+        CSVPrinter csvPrinter = new CSVPrinter(fileWriter, CSVFormat.RFC4180.withDelimiter('^'));
         for (CSVRecord csvRecord : parser) { //read in each row from the pshr output file
             Attributes relayUser = getRelayUser(csvRecord.get(2), csvRecord.get(0)); //load the user from relay via
             // employee id (and last name if there's two relay users with the same employee id)
