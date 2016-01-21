@@ -41,16 +41,17 @@ public class Onboard
         FileWriter fileWriter = new FileWriter(onboardFile);
 
         CSVPrinter csvPrinter = new CSVPrinter(fileWriter, CSVFormat.RFC4180);
-        for (CSVRecord csvRecord : parser) {
-            Attributes relayUser = getRelayUser(csvRecord.get(2), csvRecord.get(0));
+        for (CSVRecord csvRecord : parser) { //read in each row from the pshr output file
+            Attributes relayUser = getRelayUser(csvRecord.get(2), csvRecord.get(0)); //load the user from relay via
+            // employee id (and last name if there's two relay users with the same employee id)
 
             if(relayUser != null)
             {
                 String telephoneNumber = relayUser.get("telephoneNumber") != null ? relayUser.get("telephoneNumber")
-                        .toString().substring(17) : null;
+                        .get().toString() : null;
 
-                String username = relayUser.get("cn").toString();
-                username = username.substring(4, username.indexOf("@"));
+                String username = relayUser.get("cn").get().toString();
+                username = username.substring(0, username.indexOf("@"));
 
                 csvPrinter.print(csvRecord.get(0)); //last name, from PSHR
                 csvPrinter.print(csvRecord.get(1)); //first name, from PSHR
@@ -58,7 +59,7 @@ public class Onboard
                 csvPrinter.print(telephoneNumber);
                 csvPrinter.print(csvRecord.get(4)); //title, from PSHR
                 csvPrinter.print(username);
-                csvPrinter.print(relayUser.get("ccciGuid").toString().substring(10));
+                csvPrinter.print(relayUser.get("ccciGuid").get().toString());
                 csvPrinter.println();
             }
         }
@@ -76,12 +77,13 @@ public class Onboard
         {
             for(Attributes value : results.values())
             {
-                if(lastName.equalsIgnoreCase(value.get("sn").toString().substring(4)))
+                if(lastName.equalsIgnoreCase(value.get("sn").get().toString()))
                 {
                     return value;
                 }
             }
 
+            //is this is thrown, comparing first name and email address could also be done above
             throw new RuntimeException("For employeeId " + employeeId + ", " + results.size() + " results in Relay.  " +
                     "Couldn't pick the correct one.");
         }
