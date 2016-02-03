@@ -50,15 +50,13 @@ public class Onboard
                 String telephoneNumber = relayUser.get("telephoneNumber") != null ? relayUser.get("telephoneNumber")
                         .get().toString() : null;
 
-                String username = relayUser.get("cn").get().toString();
-                username = username.substring(0, username.indexOf("@"));
-
+                csvPrinter.print("Cru");            //location or tenant name
                 csvPrinter.print(csvRecord.get(0)); //last name, from PSHR
                 csvPrinter.print(csvRecord.get(1)); //first name, from PSHR
                 csvPrinter.print(csvRecord.get(3)); //email address, from PSHR
                 csvPrinter.print(telephoneNumber);
                 csvPrinter.print(csvRecord.get(4)); //title, from PSHR
-                csvPrinter.print(username);
+                csvPrinter.print(csvRecord.get(3));
                 csvPrinter.print(relayUser.get("ccciGuid").get().toString());
                 csvPrinter.println();
             }
