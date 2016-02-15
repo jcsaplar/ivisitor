@@ -18,9 +18,7 @@ import java.util.Properties;
  */
 public class Onboard
 {
-    private static final String propertiesFile = "/apps/apps-config/onboard.properties";
-    private static final String pshrFile = "/Users/dsgoers/Desktop/lakehartstaff.csv";
-    private static final String onboardFile = "/Users/dsgoers/Desktop/onboard.csv";
+    private static final String propertiesFile = "/apps/apps-config/ivisitor.properties";
 
     private static final String[] returnAttributes = {"ccciGuid", "sn", "givenName", "cn", "telephoneNumber"};
 
@@ -35,10 +33,10 @@ public class Onboard
 
         ldap = new Ldap(prop.getProperty("url"), prop.getProperty("bindDn"), prop.getProperty("password"));
 
-        File csvData = new File(pshrFile);
+        File csvData = new File(prop.getProperty("pshrFile"));
         CSVParser parser = CSVParser.parse(csvData, StandardCharsets.UTF_8, CSVFormat.RFC4180);
 
-        FileWriter fileWriter = new FileWriter(onboardFile);
+        FileWriter fileWriter = new FileWriter(prop.getProperty("outputFile"));
 
         CSVPrinter csvPrinter = new CSVPrinter(fileWriter, CSVFormat.RFC4180.withDelimiter('^'));
         for (CSVRecord csvRecord : parser) { //read in each row from the pshr output file
