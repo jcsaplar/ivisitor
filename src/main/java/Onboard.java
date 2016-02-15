@@ -73,6 +73,7 @@ public class Onboard
 
         if(results.size() > 1)
         {
+            //if there's more than one relay user with the employeeNumber, check the last names
             for(Attributes value : results.values())
             {
                 if(lastName.equalsIgnoreCase(value.get("sn").get().toString()))
