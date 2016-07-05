@@ -7,9 +7,8 @@ FROM SYSADM.PS_EMPLOYEES A
 WHERE A.PAYGROUP IN ('HFT','DIS','HTP','HPT','INT','SAL','SNB','SNO','SSP','STN','TFH','USS', 'RCE') 
 AND A.LOCATION = 'ORL' AND DEPTID NOT IN ('UCF','IM','CITY','EXEC','TOI','PARC','CHSORL','AIAFSE7');`
 2. Create /apps/apps-config/ivisitor.properties and set the properties.
-3. Run `mvn clean package`.
-4. Run `main` in `Onboard` (from your IDE).
-5. Upload to iVisitor.
+3. Run `main` in `Onboard` (from your IDE).
+4. Upload to iVisitor (see below)
 
 # iVisitor.properties
 1. `url=ldaps://relayldap.cru.org`
