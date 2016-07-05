@@ -9,6 +9,7 @@ AND A.LOCATION = 'ORL' AND DEPTID NOT IN ('UCF','IM','CITY','EXEC','TOI','PARC',
 2. Create /apps/apps-config/ivisitor.properties and set the properties.
 3. Run `mvn clean package`.
 4. Run `main` in `Onboard`.
+5. Upload to iVisitor.
 
 # iVisitor.properties
 1. `url=ldaps://relayldap.cru.org`
@@ -17,3 +18,11 @@ AND A.LOCATION = 'ORL' AND DEPTID NOT IN ('UCF','IM','CITY','EXEC','TOI','PARC',
 4. `pshrFile=location of query export`
 5. `outputFile=output location`
 6. `password=your relay password`
+
+# Upload
+1. Open a terminal in the directory with output file from this program.
+2. Run `sftp yourUsername@www.myivisitor.com`
+3. Accept the RSA key.
+4. Enter your password.
+5. Run `put <your output file>`.
+6. When it finishes, run `quit`.
