@@ -8,7 +8,7 @@ WHERE A.PAYGROUP IN ('HFT','DIS','HTP','HPT','INT','SAL','SNB','SNO','SSP','STN'
 AND A.LOCATION = 'ORL' AND DEPTID NOT IN ('UCF','IM','CITY','EXEC','TOI','PARC','CHSORL','AIAFSE7');`
 2. Create /apps/apps-config/ivisitor.properties and set the properties.
 3. Run `mvn clean package`.
-4. Run `main` in `Onboard`.
+4. Run `main` in `Onboard` (from your IDE).
 5. Upload to iVisitor.
 
 # iVisitor.properties
